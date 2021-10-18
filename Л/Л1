@@ -1,1 +1,147 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctime>
+#include <vector>
+#include <cstring>
+
+
+int main()
+{
+
+	setlocale(0, "");
+
+
+	int i, j;
+	int a[2][10];
+
+	srand(time(NULL));
+
+	//ЗАПОЛНЕНИЕ МАССИВА
+	for (i=0; i < 2; i++)
+	{
+		for (j=0; j < 10; j++)
+		{
+			a[i][j] = rand()%100;
+		}
+	}
+
+
+	//ВЫВОД МАССИВА
+	i = 0; j = 0;
+	while (i < 2)
+	{
+		while (j < 10)
+		{
+			printf(" %d", a[i][j++]);
+		}
+		printf("\n");
+		i++;
+		j = 0;
+	}
+
+
+	//НАХОЖДЕНИЕ МИНИМАЛЬНОГО И МАКСИМАЛЬНОГО ЗНАЧЕНИЙ
+	int min=a[0][0], max=0;
+
+	for (i = 0; i < 2; i++)
+	{
+		for (j = 0; j < 10; j++)
+		{
+			if (max < a[i][j])
+			{
+				max = a[i][j];
+			}
+
+			if (min>a[i][j])
+			{
+				min = a[i][j];
+			}
+		}
+	}
+
+	printf(" Максимальный элемент - %d \n Минимальный элемент - %d", max, min);
+
+	//РАЗНИЦА МЕЖДУ МАКСИМАЛЬНЫМ И МИНИМАЛЬНЫМ ЭЛЕМЕНТОМ
+	int raz;
+	raz = max - min;
+	printf("\n Разница максимального и минимального элементов= %d\n", raz);
+
+	//СУММА ЭЛЕМЕНТОВ СТРОК
+	int stroka1 = 0, stroka2 = 0;
+
+	for (i=0; i < 10; i++)
+	{
+		stroka1 = stroka1 + a[0][i];
+	}
+
+	for (i = 0; i < 10; i++)
+	{
+		stroka2 = stroka2 + a[1][i];
+	}
+
+	printf(" Сумма элементов 1й строки = %d\n Сумма элементов 2й строки = %d\n\n\n", stroka1, stroka2);
+
+	int s;
+
+	//ПРОИЗВОЛЬНЫЙ МАССИВ
+	printf(" Введите размер массива\n");
+	std::cin >> s;
+	std::vector<int> a1(s);
+
+
+	for (i=0; i < s; i++)
+	{
+		a1[i] = rand() % 100;
+	}
+
+	i = 0;
+
+	while (i < s)
+	{
+		printf(" %d", a1[i++]);
+	}
+
+	//СТРУКТУРА
+	struct student
+	{
+		char famil[20], name[20];
+		int nomzach;
+	};
+
+	student s1, s2, s3;
+
+	s1 = { "Айкашев","Максим",001 };
+	s2 = { "Курышев","Вячеслав",002 };
+	s3 = { "Ловков","Виктор",003 };
+
+
+	int z;
+
+	printf("\n\nВведите номер зачетной книжки студента\n"); std::cin >> z;
+
+	if (z == s1.nomzach)
+	{
+		printf("\nИскомый студент:\n %s %s %d\n", s1.famil, s1.name, s1.nomzach);
+	}
+	else
+	{
+		if (z == s2.nomzach)
+		{
+			printf("\nИскомый студент:\n %s %s %d\n", s2.famil, s2.name, s2.nomzach);
+		}
+		else
+		{
+			if (z == s3.nomzach)
+			{
+				printf("\nИскомый студент:\n %s %s %d\n", s3.famil, s3.name, s3.nomzach);
+			}
+			else
+			{
+				printf("\nСтудент не найден.\n");
+			}
+		}
+	}
+}
 
