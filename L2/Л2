@@ -1,0 +1,55 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <malloc.h>
+#include <iostream> 
+#include <string>
+#include <cstdio>
+#include <time.h>
+
+using namespace std;
+
+int main()
+{
+	srand(time(NULL));
+
+	const int M = 400;
+	const int N = 400;
+
+	int** a = NULL;
+	int** b = NULL;
+	int** c = NULL;
+
+	int i, j;
+
+	a = (int**)malloc(M * sizeof(int*));
+	b = (int**)malloc(M * sizeof(int*));
+	c = (int**)malloc(M * sizeof(int*));
+
+
+	for (i = 0; i < M; i++)
+	{
+		a[i] = (int*)malloc(N * sizeof(int));
+	}
+	for (i = 0; i < M; i++) 
+	{
+		b[i] = (int*)malloc(N * sizeof(int));
+	}
+	for (i = 0; i < M; i++)
+	{
+		c[i] = (int*)malloc(N * sizeof(int));
+	}
+
+
+	for (i = 0; i < N; i++) 
+	{
+		for (j = 0; j < M; j++) {
+			a[i][j] = rand() % 100;
+			b[i][j] = rand() % 100;
+			c[i][j] = a[i][j] * b[i][j];
+			cout << c[i][j];
+			
+		}
+		cout << endl << endl << endl << endl;
+	}
+
+}
