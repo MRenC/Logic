@@ -1,4 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
+
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,6 +7,7 @@
 #include <vector>
 #include <cstring>
 
+using namespace std;
 
 int main()
 {
@@ -13,41 +15,46 @@ int main()
 	setlocale(0, "");
 
 
-	int i, j;
-	int a[2][10];
+	int i, j, str, sto;
+	//ВВОД МАССИВА
+	cout << "Введите кол-во строк и столбцов массива:" << endl;
+	cin >> str >> sto;
 
+	int** a = new int*[str];
+
+	for (int i = 0; i < str; i++)
+	{
+		a[i] = new int[sto];
+	}
 	srand(time(NULL));
 
 	//ЗАПОЛНЕНИЕ МАССИВА
-	for (i=0; i < 2; i++)
+	for (i=0; i < str; i++)
 	{
-		for (j=0; j < 10; j++)
+		for (j=0; j < sto; j++)
 		{
-			a[i][j] = rand()%100;
+			a[i][j] = rand()%1000;
 		}
 	}
 
-
+	cout << endl;
 	//ВЫВОД МАССИВА
-	i = 0; j = 0;
-	while (i < 2)
+	for (int i = 0; i < str; i++)
 	{
-		while (j < 10)
+		for (int j = 0; j < sto; j++)
 		{
-			printf(" %d", a[i][j++]);
+			cout << a[i][j] << " ";
 		}
-		printf("\n");
-		i++;
-		j = 0;
+		cout << endl;
 	}
-
+	cout << endl;
 
 	//НАХОЖДЕНИЕ МИНИМАЛЬНОГО И МАКСИМАЛЬНОГО ЗНАЧЕНИЙ
 	int min=a[0][0], max=0;
 
-	for (i = 0; i < 2; i++)
+	for (i = 0; i < str; i++)
 	{
-		for (j = 0; j < 10; j++)
+		for (j = 0; j < sto; j++)
 		{
 			if (max < a[i][j])
 			{
@@ -61,47 +68,48 @@ int main()
 		}
 	}
 
-	printf(" Максимальный элемент - %d \n Минимальный элемент - %d", max, min);
+	cout << "Максимальный элемент: " << max << endl<<endl << "Минимальный элемент: " << min << endl<<endl;
+	
 
 	//РАЗНИЦА МЕЖДУ МАКСИМАЛЬНЫМ И МИНИМАЛЬНЫМ ЭЛЕМЕНТОМ
 	int raz;
 	raz = max - min;
-	printf("\n Разница максимального и минимального элементов= %d\n", raz);
+	cout << "Разница максимального и минимального элементов: " << raz << endl << endl;
 
 	//СУММА ЭЛЕМЕНТОВ СТРОК
-	int stroka1 = 0, stroka2 = 0;
+	int sumstr, nomstr = 0;
 
-	for (i=0; i < 10; i++)
+	for (int i = 0; i < str; i++)
 	{
-		stroka1 = stroka1 + a[0][i];
+		nomstr = nomstr + 1;
+		sumstr = 0;
+		for (int j = 0; j < sto; j++)
+		{
+			sumstr += a[i][j];
+		}
+		cout << "Сумма элементов " << nomstr << "-й строки равна: " << sumstr << endl <<endl;
 	}
-
-	for (i = 0; i < 10; i++)
-	{
-		stroka2 = stroka2 + a[1][i];
-	}
-
-	printf(" Сумма элементов 1й строки = %d\n Сумма элементов 2й строки = %d\n\n\n", stroka1, stroka2);
+	
+	
 
 	int s;
 
 	//ПРОИЗВОЛЬНЫЙ МАССИВ
-	printf(" Введите размер массива\n");
-	std::cin >> s;
-	std::vector<int> a1(s);
+	cout << "Введите размер массива:" << endl;
+	cin >> s;
+	int* a1 = new int[s];
 
+	cout << endl;
 
 	for (i=0; i < s; i++)
 	{
 		a1[i] = rand() % 100;
+		cout << a1[i] << " ";
 	}
+	cout << endl;
 
-	i = 0;
 
-	while (i < s)
-	{
-		printf(" %d", a1[i++]);
-	}
+	
 
 	//СТРУКТУРА
 	struct student
@@ -143,4 +151,4 @@ int main()
 			}
 		}
 	}
-}  
+}
