@@ -10,10 +10,10 @@
 
 using namespace std;
 
-int n, a[80][80];
-bool* visited = new bool[n];
+int n;
 
-void BFS(int v)
+
+void BFS(int v, int** a, bool* visited)
 {
     queue <int> Q;
     Q.push(v);
@@ -44,6 +44,13 @@ int main()
     cout << "Введите количество вершин: " << endl;
     cin >> n; cout << endl;
 
+    int** a = new int* [n];
+
+    for (int i = 0; i <= n; i++)
+    {
+        a[i] = new int[n];
+    }
+
     for (int i = 1; i <= n; i++) //ЗАПОЛНЕНИЕ МАТРИЦЫ
         for (int j = 1; j <= n; j++)
         {
@@ -62,10 +69,12 @@ int main()
         cout << endl;
     }
 
+    bool* visited = new bool[n];
+
     for (int i = 0; i <= 5; i++) visited[i] = false;
 
     cout << "Стартовая вершина >> "; cin >> v;
 
     cout << endl << "Порядок обхода: ";
-    BFS(v);
+    BFS(v, a, visited);
 }
